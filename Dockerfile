@@ -1,10 +1,15 @@
-FROM maven:3.8-openjdk-8
+FROM maven:3.8.3-jdk-8 
 
 WORKDIR /app
 COPY ./pom.xml ./pom.xml
 COPY ./src/ ./src/
 COPY ./LICENSE-GPLv3.txt ./LICENSE-GPLv3.txt
 RUN mvn verify 
+
+
+
+
+
 COPY ./entrypoint.sh ./entrypoint.sh
 
 
