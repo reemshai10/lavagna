@@ -9,10 +9,10 @@ COPY ./entrypoint.sh ./entrypoint.sh
 
 
 ENV DB_DIALECT 'MYSQL'
-ENV DB_URL 'jdbc:mysql://mysql:3306/lavagna'
+ENV DB_URL 'jdbc:mysql://db:3306/lavagna'
 ENV DB_USER 'root'
 ENV DB_PASS 'root'
-ENV SPRING_PROFILE 'dev'
+ENV SPRING_PROFILE 'dev' 
 
 RUN chmod +x entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
