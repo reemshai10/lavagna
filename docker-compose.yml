@@ -3,14 +3,6 @@ version : '2.2'
 services:
   lavagna:
     build: . 
-    # environment:
-    #   DB_DIALECT: MYSQL
-    #   DB_URL: jdbc:mysql://mysql:3306/lavagna
-    #   DB_USER: root
-    #   DB_PASS: root
-    #   SPRING_PROFILE: dev  
-    # ports:
-    #   - "8080:8080"
     networks:
       - backend
       - frontend
@@ -36,14 +28,23 @@ services:
     volumes:
       -  ./nginx.conf:/etc/nginx/nginx.conf
       -  ./src/main/webapp/:/usr/share/nginx/static/
+      - ./target/lavagna/help/:/usr/share/nginx/doc/html
     depends_on:
          - lavagna
     ports:
       - 80:80
+      - 8081:8081
     networks:
       - frontend
 
-
+  doc:
+    build: 
+      context: .
+      dockerfile: doc.Dockerfile
+    volumes:
+      - $PWD/target:/doc/target/
+    networks:
+      - frontend 
 
 volumes:
   MYSQLDB_VOLUME:
@@ -51,5 +52,4 @@ volumes:
 networks:
   backend:
   frontend:
-
       
