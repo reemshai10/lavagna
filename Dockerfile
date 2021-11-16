@@ -1,12 +1,10 @@
 FROM maven:3.6.1-jdk-8 as Builder
-
 WORKDIR /app/
-
 COPY ./pom.xml ./pom.xml
 COPY ./LICENSE-GPLv3.txt ./LICENSE-GPLv3.txt
 COPY ./src/ ./src/
-
 RUN mvn verify
+
 
 
 FROM openjdk:8-jdk-alpine
