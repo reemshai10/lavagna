@@ -1,8 +1,14 @@
 version : '2.2'
 
 services:
-  app:
-    build: .  
+  lavagna:
+    build: . 
+    # environment:
+    #   DB_DIALECT: MYSQL
+    #   DB_URL: jdbc:mysql://mysql:3306/lavagna
+    #   DB_USER: root
+    #   DB_PASS: root
+    #   SPRING_PROFILE: dev  
     # ports:
     #   - "8080:8080"
     networks:
@@ -29,15 +35,13 @@ services:
     image: nginx:1.21-alpine
     volumes:
       -  ./nginx.conf:/etc/nginx/nginx.conf
-      -  ./src/main/webapp:/etc/nginx/html/static
+      -  ./src/main/webapp/:/usr/share/nginx/static/
     depends_on:
-         - app
+         - lavagna
     ports:
       - 80:80
     networks:
       - frontend
-   
-
 
 
 

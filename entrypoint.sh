@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/sh
 java -Xms64m -Xmx128m -Ddatasource.dialect="${DB_DIALECT}" \
 -Ddatasource.url="${DB_URL}" \
 -Ddatasource.username="${DB_USER}" \
