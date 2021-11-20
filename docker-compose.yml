@@ -4,6 +4,8 @@ services:
   lavagna:
     build: .
     image : 558924459154.dkr.ecr.eu-central-1.amazonaws.com/dev_lava
+
+
     networks:
       - backend
       - frontend
@@ -39,13 +41,14 @@ services:
       - frontend
 
   doc:
+
     build: 
-      context: .
+    context: .
       dockerfile: doc.Dockerfile
     volumes:
-      - $PWD/target:/doc/target/   #i add to line 473 in the pom file hostname : 0.0.0.0 so dont need the volume 
+       - $PWD/target:/doc/target/   #i add to line 473 in the pom file hostname : 0.0.0.0 so dont need the volume 
     networks:
-      - frontend 
+       - frontend 
 
 volumes:
   MYSQLDB_VOLUME:
