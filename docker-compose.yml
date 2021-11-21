@@ -2,8 +2,8 @@ version : '2.2'
 
 services:
   lavagna:
-    ##build: .
-    image : 558924459154.dkr.ecr.eu-central-1.amazonaws.com/lava:1.1
+    build: .
+    #image : 558924459154.dkr.ecr.eu-central-1.amazonaws.com/lava:1.1
     networks:
       - backend
       - frontend
@@ -29,7 +29,7 @@ services:
     volumes:
       -  ./nginx.conf:/etc/nginx/nginx.conf
       -  ./src/main/webapp/:/usr/share/nginx/static/
-      # - ./target/lavagna/help/:/usr/share/nginx/doc/html # #i add to line 473 in the pom file hostname : 0.0.0.0 so dont need to mount 
+      - ./target/lavagna/help/:/usr/share/nginx/doc/html # #i add to line 473 in the pom file hostname : 0.0.0.0 so dont need to mount 
     depends_on:
          - lavagna
     ports:
@@ -38,14 +38,14 @@ services:
     networks:
       - frontend
 
-  # doc:
-  #   ##build: 
-  #     context: .
-  #     dockerfile: doc.Dockerfile
-  #   # volumes:
-  #   #   - $PWD/target:/doc/target/   #i add to line 473 in the pom file hostname : 0.0.0.0 so dont need the volume 
-  #   networks:
-  #     - frontend 
+  doc:
+    build: 
+      context: .
+      dockerfile: doc.Dockerfile
+    volumes:
+      - $PWD/target:/doc/target/   #i add to line 473 in the pom file hostname : 0.0.0.0 so dont need the volume 
+    networks:
+      - frontend 
 
 volumes:
   MYSQLDB_VOLUME:
