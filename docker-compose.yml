@@ -2,8 +2,8 @@ version : '2.2'
 
 services:
   lavagna:
-    build: .
-    image : 558924459154.dkr.ecr.eu-central-1.amazonaws.com/dev_lava
+    #build : .
+    image : public.ecr.aws/l6d1u0r3/lava
 
 
     networks:
